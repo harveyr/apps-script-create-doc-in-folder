@@ -10,17 +10,22 @@ function handleCreate() {
   const currentDoc = DocumentApp.getActiveDocument()
   const ui = DocumentApp.getUi()
 
+  Logger.log('Current doc ID: ', currentDoc.getId())
+
   // https://developers.google.com/apps-script/reference/drive/file
   const driveFile = DriveApp.getFileById(currentDoc.getId())
   const parents = driveFile.getParents()
+  let parentFolder: GoogleAppsScript.Drive.Folder | undefined
   if (parents.hasNext()) {
-    const parent = parents.next()
-    Logger.log('Found parent folder: ' + parent.getName())
-  } else {
-    Logger.log('No parent folder found')
+    parentFolder = parents.next()
+    Logger.log('Found parent folder: ' + parentFolder.getName())
   }
 
-  return
+  if (!parentFolder) {
+    const msg = `No parent found (this shouldn't happen)`
+    ui.alert(msg)
+    throw new Error(msg)
+  }
 
   // https://developers.google.com/apps-script/reference/document/range
   const selection = currentDoc.getSelection()
@@ -50,12 +55,12 @@ function handleCreate() {
     const existing = existingList.next()
     docId = existing.getId()
     docUrl = existing.getUrl()
-    console.log('Found existing doc', docUrl)
+    Logger.log('Found existing doc', docUrl)
   } else {
     const newDoc = DocumentApp.create(taskDocName)
     docId = newDoc.getId()
     docUrl = newDoc.getUrl()
-    console.log('Created new doc', newDoc.getUrl())
+    Logger.log('Created new doc', newDoc.getUrl())
   }
 
   if (!docId) {
@@ -67,6 +72,5 @@ function handleCreate() {
 
   selected.setText(taskDocName).setLinkUrl(docUrl)
 
-  // const destFolder = DriveApp.getFolderById(TASK_NOTES_FOLDER_ID)
-  // DriveApp.getFileById(docId).moveTo(destFolder)
+  DriveApp.getFileById(docId).moveTo(parentFolder)
 }

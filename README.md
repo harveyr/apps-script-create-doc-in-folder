@@ -23,13 +23,30 @@ which resulted in an `Untitled.js` on my local filesystem.
 
 I renamed that to `index.ts`, since that's the example filename used in the TypeScript guide linked above.
 
-### TypeScript setup
+At this point, `clasp push --watch` ran without errors,
+but `clasp push` complained about a missing `package.json`.
+Oopsie.
+
+### NPM and TypeScript setup
 
 https://www.digitalocean.com/community/tutorials/typescript-new-project
 
 ```sh
+npm init
+
 npm i typescript --save-dev
 
 npx tsc --init
 ```
 
+### Create Apps Script deployment
+
+Add-on type needs a GCP project. I created a new GCP project for this.
+I also had to configure the OAuth consent screen within that project
+and add myself as a test user.
+
+Once that was complete, I was able to successfully submit my project ID in the Apps Script project config.
+
+After that, I was able to successfully create an Apps Script Deployment with the *Add-on* type.
+
+Now, how to install it into my Docs editor...
