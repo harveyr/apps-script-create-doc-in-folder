@@ -23,4 +23,13 @@ which resulted in an `Untitled.js` on my local filesystem.
 
 I renamed that to `index.ts`, since that's the example filename used in the TypeScript guide linked above.
 
+### TypeScript setup
+
+https://www.digitalocean.com/community/tutorials/typescript-new-project
+
+```sh
+npm i typescript --save-dev
+
+npx tsc --init
+```
 
