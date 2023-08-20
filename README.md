@@ -61,3 +61,16 @@ Once that was complete, I was able to successfully submit my project ID in the A
 After that, I was able to successfully create an Apps Script Deployment with the *Add-on* type.
 
 Now, how to install it into my Docs editor...
+
+### Solving `We're sorry, a server error occurred`
+
+This line was throwing an errror:
+
+```ts
+const driveFile = DriveApp.getFileById(currentDoc.getId())
+```
+
+Following the fix found [here](https://stackoverflow.com/a/63635790),
+I added the `Drive` *Service* to the project via the Apps Script *Editor* console,
+and then I enabled the Google Drive API in the Cloud Console.
+
