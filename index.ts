@@ -45,19 +45,19 @@ function handleCreate() {
   }
 
   const selected = elements[0].getElement().asText()
-  const taskDocName = `[task] ${selected.getText()}`
+  const newDocName = selected.getText()
 
   let docId: string = ''
   let docUrl: string = ''
 
-  const existingList = DriveApp.getFilesByName(taskDocName)
+  const existingList = DriveApp.getFilesByName(newDocName)
   if (existingList.hasNext()) {
     const existing = existingList.next()
     docId = existing.getId()
     docUrl = existing.getUrl()
     Logger.log('Found existing doc', docUrl)
   } else {
-    const newDoc = DocumentApp.create(taskDocName)
+    const newDoc = DocumentApp.create(newDocName)
     docId = newDoc.getId()
     docUrl = newDoc.getUrl()
     Logger.log('Created new doc', newDoc.getUrl())
@@ -70,7 +70,7 @@ function handleCreate() {
     throw new Error(`Failed to set docUrl`)
   }
 
-  selected.setText(taskDocName).setLinkUrl(docUrl)
+  selected.setText(newDocName).setLinkUrl(docUrl)
 
   DriveApp.getFileById(docId).moveTo(parentFolder)
 }
