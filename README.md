@@ -1,5 +1,15 @@
 # Apps Script: Create Doc
 
+This is an experimental Apps Script Add-on to provide a menu command
+that creates a new Doc in the same folder as your current one.
+
+The idea is that you'd select text, run the menu command,
+and your selection will turn into a link to a new doc whose title is the selected text
+(or an existing doc with that title if it's found).
+
+I got this general idea working in
+[another project](https://github.com/harveyr/apps-script-task-doc),
+and now I'm trying to make it a proper, \[maybe] published Workspace Add-on.
 
 ## Getting started
 
