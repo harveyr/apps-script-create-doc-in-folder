@@ -1,4 +1,4 @@
-# Apps Script: Create Doc
+# Apps Script: Create Doc In Folder
 
 This is an experimental Apps Script Add-on to provide a menu command
 that creates a new Doc in the same folder as your current one.
