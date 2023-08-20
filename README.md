@@ -2,6 +2,7 @@
 
 This is an experimental Apps Script Add-on to provide a menu command
 that creates a new Doc in the same folder as your current one.
+It's an effort to make Docs feel a touch more like an Obsidian-esque PKM tool.
 
 The idea is that you'd select text, run the menu command,
 and your selection will turn into a link to a new doc whose title is the selected text
